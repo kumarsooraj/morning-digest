@@ -2,18 +2,12 @@ name: Morning Digest
 
 on:
   schedule:
-    # Runs at 6:00 AM UTC daily — adjust to your timezone:
-    # 6:00 AM IST  = 0:30 UTC  → change to: '30 0 * * *'
-    # 6:00 AM EST  = 11:00 UTC → change to: '0 11 * * *'
-    # 6:00 AM PST  = 14:00 UTC → change to: '0 14 * * *'
-    - cron: '0 14 * * *'   # default: 6:00 AM IST
-
-  workflow_dispatch:  # allows manual trigger from GitHub UI (great for testing!)
+    - cron: '0 14 * * *'  # 6:00 AM PST daily
+  workflow_dispatch:
 
 jobs:
   send-digest:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -26,10 +20,10 @@ jobs:
       - name: Install dependencies
         run: pip install anthropic
 
-        - name: Run digest agent
+      - name: Run digest agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GMAIL_USER:        ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASS:    ${{ secrets.GMAIL_APP_PASS }}
-          TO_EMAIL:          ${{ secrets.TO_EMAIL }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: python digest.py
