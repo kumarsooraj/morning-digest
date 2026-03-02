@@ -25,18 +25,33 @@ def fetch_digest() -> str:
 
     prompt = f"""Today is {today}.
 
-You are a sharp, concise morning briefing editor. Using web search, find the 3-4 most important stories from the LAST 24 HOURS for each of these topics:
-1. Artificial Intelligence (models, companies, policy, research)
-2. Geopolitics (wars, diplomacy, elections, international tensions)
-3. Finance & Markets (stocks, crypto, macro economy, central banks)
+You are a sharp, concise morning briefing editor. Using web search, find the most important stories and data for each section below.
 
-For each topic, write:
-- A bold topic header
-- 3-4 bullet points, each 1-2 sentences max
-- Each bullet must be a real, specific story with key facts (numbers, names, countries)
+**Section 1 — Artificial Intelligence**
+3-4 bullets on the most important AI news from the last 24 hours (models, companies, policy, research).
 
-Keep the entire digest under 400 words. Be punchy, factual, no fluff.
-End with a one-line "💡 Big Picture" connecting a theme across the three areas if one exists."""
+**Section 2 — Geopolitics**
+3-4 bullets on key geopolitical developments (wars, diplomacy, elections, international tensions).
+
+**Section 3 — Finance & Markets**
+3-4 bullets on macro finance news (Fed, inflation, economy, crypto, earnings).
+
+**Section 4 — 📈 Market Pulse & Watchlist**
+First, 2-3 bullets on today's market context:
+- Pre-market direction and key levels (S&P 500, Nasdaq, Dow futures)
+- Any major macro events today (Fed speakers, economic data releases, earnings)
+- One sentence on overall market sentiment
+
+Then, 3-5 stocks or ETFs worth watching, formatted as:
+TICKER — Current price & recent trend — Why it's interesting today — Long-term thesis in 1 sentence
+Focus on fundamentally strong companies or broad ETFs at potentially interesting price levels. Frame as "worth researching" not as buy/sell advice. Mix of individual stocks and ETFs is ideal.
+
+For each topic, write bold topic headers and bullet points, each 1-2 sentences max with real specific facts (numbers, names, prices).
+
+Keep the entire digest under 550 words. Be punchy, factual, no fluff.
+End with a one-line "💡 Big Picture" connecting a theme across all sections if one exists.
+
+Important: This is for informational purposes only, not financial advice."""
 
     response = client.messages.create(
         model="claude-opus-4-5",
