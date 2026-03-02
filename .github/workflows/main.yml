@@ -27,9 +27,9 @@ jobs:
         run: pip install anthropic
 
       - name: Run digest agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.sk-ant-api03-TJK...zgAA }}
-          GMAIL_USER:        ${{ secrets.morning-digest }}
-          GMAIL_APP_PASS:    ${{ secrets.ydsn kenk qoca fvoh }}
-          TO_EMAIL:          ${{ secrets.kumar.x.sooraj@gmail.com }}
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  GMAIL_USER:        ${{ secrets.GMAIL_USER }}
+  GMAIL_APP_PASS:    ${{ secrets.GMAIL_APP_PASS }}
+  TO_EMAIL:          ${{ secrets.TO_EMAIL }}
         run: python digest.py
